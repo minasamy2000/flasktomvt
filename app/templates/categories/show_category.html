@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+    <h1> Categorie Info </h1>
+
+    <div class="row">
+        <div class="offset-2 col-4">
+
+
+            <div class="card" style="width: 18rem;">
+
+                <img src="{{url_for('uploaded_file',filename=category.image)}}" class="card-img-top" alt="...">
+
+                <div class="card-body">
+                    <h5 class="card-title"> {{category.name}}</h5>
+                    <p class="card-text">{{category.description}}</p>
+                    <div class="row">
+
+
+                        <a href="{{url_for('categories.index')}}" class="btn btn-info">Back</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-6">
+            <h2>Posts in this category:</h2>
+
+            {% for post in category.posts %}
+            <div class="row">
+                <a href="{{post.show_url}}"> {{post.title}}</a>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock body %}

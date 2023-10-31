@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1 class="mt-5">Add Post</h1>
+    <form class="mt-4" method="POST" action="{{ url_for('posts.add_post') }}" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            <label for="{{ form.title.id }}" class="form-label">Title:</label>
+            {{ form.title(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.body.id }}" class="form-label">Body:</label>
+            {{ form.body(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.image.id }}" class="form-label">Image:</label>
+            {{ form.image(class="form-control") }}
+        </div>
+
+        <div class="form-group mt-5 mb-5 ">
+            <label class="form-label me-3" for=""> Categories</label>
+            <select name="category" id="">
+                {% for cat in categories %}
+                <option value="{{cat.id}}">{{cat}}</option>
+                {% endfor %}
+            </select>
+        </div>
+       
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% endblock body %}

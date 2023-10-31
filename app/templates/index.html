@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block body %}
+<a class="btn btn-info" href="{{url_for('posts.add_post')}}">Add Post</a>
+<div class="container">
+    <h1>Posts</h1>
+
+    <div class="row">
+
+        {% for post in posts %}
+
+        <div class="col-3">
+
+            <div class="card" style="width: 18rem;">
+
+                <img src="{{url_for('uploaded_file',filename=post.image)}}" class="card-img-top" alt="...">
+
+                <div class="card-body">
+                    <h5 class="card-title">title:{{ post.title }}</h5>
+                    <p class="card-text">Body:{{ post.body }}</p>
+                    <p class="card-text">reared at:{{ post.created_at}}</p>
+                    <p class="card-text">updated at:{{ post.updated_at }}</p>
+                    <div class="row">
+                        <div class="col-3">
+                            <a href="{{url_for('posts.post_show',id=post.id)}}" class="btn btn-primary">show</a>
+
+                        </div>
+                        <div class="col-3">
+                            <a href="{{url_for('posts.edit_post',post_id=post.id)}}" class="btn btn-info">Update</a>
+
+                        </div>
+                        <div class="col-3">
+                            <a href="{{url_for('posts.delete_post',post_id=post.id)}}"
+                                class="btn btn-danger">Delete</a>
+
+                        </div>
+                        <div class="row mt-5">
+                            <div class="col-6">
+                                <span>Category: </span>
+
+                            </div>
+                            <div class="col-6">
+                                <a href="{{post.category.show_url}}"
+                                    class="">{{post.category.name}}</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+
+
+{% endblock body %}
